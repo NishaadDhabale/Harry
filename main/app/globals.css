@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;900&display=swap');
+
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'fc';
+  src: url('../public/assets/fonts/FIGHTT3_.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face{
+  font-family:"DD";
+  src: url('../public/assets/fonts/D-DIN.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face{
+  font-family:"HalfDeath";
+  src: url('../public/assets/fonts/HALF\ DEATH.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face{
+  font-family:"lacto";
+  src: url('../public/assets/fonts/latosce.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face{
+  font-family:"Odachi";
+  src: url('../public/assets/fonts/Odachi.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'grandmaster';
+  src: url('../public/assets/fonts/Grandmaster-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT';
+  src: url('../public/assets/fonts/TT\ Trailers\ Trial\ Bold.ttf')
+    format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+@theme {
+  --font-fightclub: fc;
+  --font-barlow: 'Barlow', sans-serif;
+  --font-grandmaster: grandmaster;
+  --font-tt: TT;
+  --font-DD: DD;
+  --font-lacto: lacto;
+  --font-odachi: Odachi;
+  --font-halfdeath: HalfDeath;
+
+  --color-bloodRed: #a32b2b;
+}
+
+
+:root {
+  background-color: black;
+  color: white;
+}
+
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(88, 88, 88);
+  border-radius: 20px;
+}
+
+.negative-text {
+  mix-blend-mode: difference;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(88, 88, 88);
+}
