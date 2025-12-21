@@ -1,5 +1,5 @@
 'use client';
-import { use, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   motion,
   useMotionValueEvent,
@@ -8,12 +8,17 @@ import {
   type Variants,
 } from 'motion/react';
 import useStore from '../components/store';
-import { sentence,containerVariants,wordVariants } from '@/components/variants';
+import {
+  sentence,
+  containerVariants,
+  wordVariants,
+} from '@/components/variants';
 
 export default function Story() {
   const [isplaying, setisplaying] = useState(true);
   const [showQuote, setshowQuote] = useState(false);
   const ismute = useStore((state) => state.ismute);
+  const [speedplaying, setspeedplaying] = useState(false);
 
   const firstRef = useRef<HTMLDivElement>(null);
   const patrounousRef = useRef<HTMLDivElement>(null);
@@ -24,31 +29,57 @@ export default function Story() {
   const dumbleref = useRef<HTMLDivElement>(null);
   const Dumbvidref = useRef<HTMLVideoElement>(null);
   const speedref = useRef<HTMLVideoElement>(null);
-  const voldermortRef= useRef<HTMLDivElement>(null);
-
-
+  const voldermortRef = useRef<HTMLDivElement>(null);
+  const startaudioRef = useRef<HTMLAudioElement | null>(null);
+  const themeaudioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (endingRef.current && speachRef.current) {
+    if (
+      endingRef.current &&
+      startaudioRef.current &&
+      themeaudioRef.current &&
+      speachRef.current
+    ) {
       endingRef.current.muted = !ismute;
       speachRef.current.muted = !ismute;
+      startaudioRef.current.muted = !ismute;
+      themeaudioRef.current.muted = !ismute;
     }
   }, [ismute]);
 
   useEffect(() => {
     const playvedio = async () => {
-      if (endingRef.current && isplaying) {
+      if (endingRef.current && startaudioRef.current && isplaying) {
         await endingRef.current.play();
+        await startaudioRef.current.play();
       }
     };
     playvedio();
   }, [isplaying]);
 
   useEffect(() => {
-    if (endingRef.current && !isplaying) {
+    if (endingRef.current && startaudioRef.current && !isplaying) {
       endingRef.current.pause();
+      startaudioRef.current.pause();
     }
   }, [isplaying]);
+
+  useEffect(() => {
+    const playvideo = async () => {
+      if (speedref.current && themeaudioRef.current && speedplaying) {
+        await themeaudioRef.current.play();
+        await speedref.current.play();
+      }
+    };
+    playvideo();
+  }, [speedplaying]);
+
+  useEffect(() => {
+    if (speedref.current && themeaudioRef.current && !speedplaying) {
+      themeaudioRef.current.pause();
+      speedref.current.pause();
+    }
+  }, [speedplaying]);
 
   const { scrollYProgress: firstScroll } = useScroll({
     target: firstRef,
@@ -62,8 +93,6 @@ export default function Story() {
     offset: ['start end', 'start start'],
   });
 
-
-
   useMotionValueEvent(lastDiv, 'change', (latest) => {
     if (speachRef.current) {
       if (latest >= 0.6) {
@@ -74,17 +103,16 @@ export default function Story() {
     }
   });
 
-
   useMotionValueEvent(horizantalScroll, 'change', (latest) => {
-    if (speedref.current) {
-      if (latest >= 0.13 && latest <= 0.36) {
-        speedref.current.play();
+    if (speedref.current && themeaudioRef.current) {
+      themeaudioRef.current.volume = themevolume.get();
+      if (latest >= 0.128 && latest <= 0.36) {
+        setspeedplaying(true);
       } else {
-        speedref.current.pause();
+        setspeedplaying(false);
       }
     }
   });
-
 
   useMotionValueEvent(firstScroll, 'change', (latest) => {
     if (endingRef.current) {
@@ -105,13 +133,15 @@ export default function Story() {
     }
   });
 
-
-
-
   ///
-   const alwaystext = useTransform(horizantalScroll, [0.06, 0.1425], [202, -65]);
-  const harry1 = useTransform(horizantalScroll, [0.22, 0.30], [-60, 20]);
-  const height = useTransform(horizantalScroll,[0.19, 0.24,0.27,0.33], ["47%", "18%","18%","47%"])
+
+  const alwaystext = useTransform(horizantalScroll, [0.06, 0.1425], [202, -65]);
+  const harry1 = useTransform(horizantalScroll, [0.22, 0.3], [-60, 20]);
+  const height = useTransform(
+    horizantalScroll,
+    [0.19, 0.24, 0.27, 0.33],
+    ['47%', '18%', '18%', '47%']
+  );
   const reserctedText = useTransform(
     horizantalScroll,
     [0.85, 0.92],
@@ -148,20 +178,19 @@ export default function Story() {
   const slideText = useTransform(horizantalScroll, [0.28, 0.56], [-500, 900]);
 
   const youvtext = useTransform(horizantalScroll, [0.58, 0.631], [-650, 0]);
-   const xTransfrom = useTransform(horizantalScroll, [0, 1], ['0vw', '-800vw']);
+  const xTransfrom = useTransform(horizantalScroll, [0, 1], ['0vw', '-800vw']);
   const textY = useTransform(firstScroll, [0, 1], ['100%', '-100%']);
   const opacityfirst = useTransform(
     firstScroll,
     [0, 0.75, 0.88, 1],
     [0, 0.7, 0, 0]
   );
-  const volmueControl = useTransform(firstScroll, [0, 1], [1, 0]);
 
-   const videoScroll = useTransform(horizantalScroll, [0.58, 0.82], [0, 1]);
+  const videoScroll = useTransform(horizantalScroll, [0.58, 0.82], [0, 1]);
   const dtext1 = useTransform(horizantalScroll, [0.69, 0.75], [-370, -170]);
   const dtext2 = useTransform(horizantalScroll, [0.705, 0.78], [120, -40]);
 
-useMotionValueEvent(videoScroll, 'change', (latest) => {
+  useMotionValueEvent(videoScroll, 'change', (latest) => {
     const video = Dumbvidref.current;
     if (video && video.duration) {
       video.pause();
@@ -170,10 +199,12 @@ useMotionValueEvent(videoScroll, 'change', (latest) => {
     }
   });
 
-
-
-
-
+  const volmueControl = useTransform(firstScroll, [0, 1], [1, 0]);
+  const themevolume = useTransform(
+    horizantalScroll,
+    [0.128, 0.244, 0.36],
+    [0, 1, 0]
+  );
   ///
 
   return (
@@ -188,6 +219,8 @@ useMotionValueEvent(videoScroll, 'change', (latest) => {
             These are Dark Times
           </motion.h1>
         </div>
+        <audio ref={startaudioRef} src="./snape.mp3" loop className="h-8" />
+
         <video
           src="https://d2k4kblueslspf.cloudfront.net/startref.mp4"
           ref={endingRef}
@@ -260,6 +293,13 @@ useMotionValueEvent(videoScroll, 'change', (latest) => {
             </div>
 
             <div className="h-screen w-screen z-0 shrink-0 bg-black flex items-center justify-center relative overflow-hidden">
+              <audio
+                ref={themeaudioRef}
+                src="./themee.mp3"
+                loop
+                className="h-8"
+              />
+
               <video
                 src="./Speedup.mp4"
                 muted
@@ -275,23 +315,22 @@ useMotionValueEvent(videoScroll, 'change', (latest) => {
               <div></div>
 
               <motion.div
-                style={{ height:height }}
+                style={{ height: height }}
                 className="w-screeen absolute z-10 inset-0 flex bg-black"
-              >
-
-              </motion.div>
+              ></motion.div>
 
               <motion.div
-              style={{height:height}}
-              className="w-full absolute z- bottom-0 flex bg-black">
-
-              </motion.div>
-               <h1 className="absolute z-20 text-8xl font-halfdeath text-bloodRed   top-60 right-20">
+                style={{ height: height }}
+                className="w-full absolute z- bottom-0 flex bg-black"
+              ></motion.div>
+              <h1 className="absolute z-20 text-8xl font-halfdeath text-bloodRed   top-60 right-20">
                 YOU ARE A WIZARD, HARRY
               </h1>
 
-             <motion.div  className='text-neutral-700 absolute z-20 h-5 w-full text-4xl font-DD scale-x-145 tracking-[8px] inset-0 flex flex-col overflow-visible items-center justify-between py-7'
-             style={{y:harry1}}>
+              <motion.div
+                className="text-neutral-700 absolute z-20 h-5 w-full text-4xl font-DD scale-x-145 tracking-[8px] inset-0 flex flex-col overflow-visible items-center justify-between py-7"
+                style={{ y: harry1 }}
+              >
                 <h1>THE BOY WHO LIVED</h1>
               </motion.div>
             </div>
