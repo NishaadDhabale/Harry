@@ -115,8 +115,9 @@ export default function Story() {
   });
 
   useMotionValueEvent(firstScroll, 'change', (latest) => {
-    if (endingRef.current) {
+    if (endingRef.current && startaudioRef.current) {
       endingRef.current.volume = volmueControl.get();
+      startaudioRef.current.volume= volmueControl.get();
       if (latest >= 0.9) {
         setisplaying(false);
       } else {
