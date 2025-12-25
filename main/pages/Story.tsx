@@ -13,6 +13,7 @@ import {
   containerVariants,
   wordVariants,
 } from '@/components/variants';
+import Navigation from '@/components/Navigation';
 
 export default function Story() {
   const [isplaying, setisplaying] = useState(true);
@@ -211,6 +212,9 @@ export default function Story() {
   return (
     <div className="h-auto flex flex-col">
       <div ref={firstRef} className="h-screen">
+
+        <Navigation></Navigation>
+       
         <div className="absolute flex overflow-hidden justify-center items-end h-screen w-full bg-linear-to-b from-transparent from-90% to-black ">
           <motion.h1
             style={{ y: textY, opacity: opacityfirst, filter: 'blur(10px)' }}
@@ -454,8 +458,9 @@ export default function Story() {
               <video
                 src="https://d2k4kblueslspf.cloudfront.net/Dumbslideintra.mp4"
                 ref={Dumbvidref}
-                preload="auto"
-                className="object-cover h-screen"
+                preload="metadata"
+                className="object-cover h-screen pointer-events: none"
+                style={{ willChange: 'transform' }}
               />
 
               <motion.div
@@ -493,7 +498,7 @@ export default function Story() {
                   style={{ x: reserctedText2 }}
                   className="text-[84px] font-barlow font-bold"
                 >
-                  The One Who Shall SHall Not be Named
+                  The One Who Shall Shall Not be Named
                 </motion.h1>
               </div>
 
