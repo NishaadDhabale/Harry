@@ -62,7 +62,7 @@ const Home = () => {
         }}className="text-xl font-black cursor-pointer tracking-tighter text-white">
           Home
         </span>
-        <div className="hidden md:flex gap-12 text-[10px] tracking-[0.3em] uppercase font-bold text-neutral-500">
+        <div className="hidden md:flex gap-12 text-[14px] tracking-[0.3em] uppercase font-bold text-neutral-500">
           <a
             href="#contact"
             className="hover:text-white transition-colors cursor-pointer"
