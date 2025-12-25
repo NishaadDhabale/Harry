@@ -30,6 +30,7 @@ export default function Navigation() {
       }}
       transition={{
         duration: 0.4,
+        delay:0.3,
         ease: "easeOut",
       }}
     >
