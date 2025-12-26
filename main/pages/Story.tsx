@@ -309,6 +309,8 @@ export default function Story() {
                 src="./Speedup.mp4"
                 muted
                 ref={speedref}
+                preload='auto'
+                loop
                 className=" absolute h-screen"
               ></video>
 
