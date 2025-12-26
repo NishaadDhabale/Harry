@@ -1,10 +1,12 @@
 "use client";
-
+import useStore from './store'
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function Navigation() {
+  const ismute = useStore((state) => state.ismute);
+  const setmuted = useStore((state) => state.setmuted);
   const router = useRouter();
   const [showInitially, setShowInitially] = useState(true);
   const [hovered, setHovered] = useState(false);
@@ -38,6 +40,19 @@ export default function Navigation() {
 
 
         <div className="hidden md:flex gap-12 text-[14px] tracking-[0.3em] uppercase font-bold text-neutral-500">
+
+<div
+onClick={()=>{
+setmuted(!ismute)
+}}
+className="cursor-pointer">
+  {!ismute?"Unmute":"Mute"}
+</div>
+<span onClick={()=>{
+  router.push("/char")
+}}>
+Char
+</span>
           <span
             onClick={() => router.push("/stats")}
             className="hover:text-white  transition-colors cursor-pointer"

@@ -246,7 +246,7 @@ const Home = () => {
       {/* Footer */}
       <footer className="py-12 px-6 md:px-12 border-t border-neutral-900 flex flex-col md:flex-row justify-between items-center gap-6">
         <p className="text-[10px] tracking-widest text-neutral-700 font-bold uppercase">
-          © 2024 Alex Rivera / All Rights Reserved
+          © 2025 Nishaad Dhabale
         </p>
         <div className="flex gap-8">
           <span className="text-[10px] tracking-widest text-neutral-700 font-bold uppercase cursor-pointer hover:text-white transition-colors">
