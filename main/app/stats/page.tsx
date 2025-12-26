@@ -150,7 +150,7 @@ const Home = () => {
                   {/* Aesthetic Label */}
                   <div className="absolute -bottom-6 -right-6 bg-white text-black p-4 hidden md:block">
                     <p className="text-[10px] font-black tracking-widest leading-none">
-                      EST. 2024
+                      EST. 2025
                     </p>
                   </div>
                 </div>
