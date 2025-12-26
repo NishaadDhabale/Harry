@@ -142,7 +142,7 @@ export default function Story() {
   const height = useTransform(
     horizantalScroll,
     [0.19, 0.24, 0.27, 0.33],
-    ['47%', '18%', '18%', '47%']
+    ['47%', '24%', '24%', '47%']
   );
   const reserctedText = useTransform(
     horizantalScroll,
@@ -311,7 +311,7 @@ export default function Story() {
                 ref={speedref}
                 preload='auto'
                 loop
-                className=" absolute h-screen"
+                className=" absolute inset-0 w-full h-full object-cover"
               ></video>
 
               <img
