@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 
 import { useRouter } from "next/navigation";
+import Navigation from '@/components/Navigation';
 
 const Home = () => {
 
@@ -56,25 +57,7 @@ const Home = () => {
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-50 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-40 flex justify-between items-center px-6 py-8 md:px-12 mix-blend-difference">
-         <span onClick={()=>{
-          router.push('/')
-        }}className="text-xl font-black cursor-pointer tracking-tighter text-white">
-          Home
-        </span>
-        <div className="hidden md:flex gap-12 text-[14px] tracking-[0.3em] uppercase font-bold text-neutral-500">
-          <a
-            href="#contact"
-            className="hover:text-white transition-colors cursor-pointer"
-          >
-            Contact
-          </a>
-        </div>
-        <button className="md:hidden text-white">
-          <div className="w-6 h-0.5 bg-white mb-1.5"></div>
-          <div className="w-6 h-0.5 bg-white"></div>
-        </button>
-      </nav>
+<Navigation/>
 
       <main>
         {/* Hero Section */}

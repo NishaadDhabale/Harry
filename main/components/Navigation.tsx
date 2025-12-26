@@ -36,19 +36,31 @@ export default function Navigation() {
         ease: "easeOut",
       }}
     >
-      <nav className="flex justify-end items-center px-6 py-8 md:px-12 mix-blend-difference">
+      <nav className="flex justify-between items-center px-6 py-8 md:px-12 mix-blend-difference">
 
+<div className="hidden md:flex gap-12 text-[14px] tracking-[0.3em] uppercase font-bold text-neutral-500">
 
+<span
+className="hover:text-white  transition-colors cursor-pointer"
+onClick={()=>{
+  router.push("/")
+}}>
+Home
+</span>
+</div>
         <div className="hidden md:flex gap-12 text-[14px] tracking-[0.3em] uppercase font-bold text-neutral-500">
 
 <div
 onClick={()=>{
 setmuted(!ismute)
 }}
-className="cursor-pointer">
+className="hover:text-white  transition-colors cursor-pointer"
+>
   {!ismute?"Unmute":"Mute"}
 </div>
-<span onClick={()=>{
+<span
+className="hover:text-white  transition-colors cursor-pointer"
+onClick={()=>{
   router.push("/char")
 }}>
 Char
